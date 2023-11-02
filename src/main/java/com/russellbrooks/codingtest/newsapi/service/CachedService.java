@@ -24,6 +24,7 @@ public class CachedService {
 
     /**
      *  Calls the gnews Search api, caching identical searches using the default caffeine cache at the service level.
+     *  For a larger app where this service would have multiple replicas, we should use a better solution like redis
      * @param q This parameter allows you to specify your search keywords to find the news articles you are looking for. The keywords will be used to return the most relevant articles. It is possible to use logical operators with keywords, see the section on query syntax.
      * @param lang This parameter allows you to specify the language of the news articles returned by the API. You have to set as value the 2 letters code of the language you want to filter.
      * @param country This parameter allows you to specify the country where the news articles returned by the API were published, the contents of the articles are not necessarily related to the specified country. You have to set as value the 2 letters code of the country you want to filter.
@@ -72,6 +73,7 @@ public class CachedService {
 
     /**
      *  Calls the gnews topHeadlines api, caching identical searches using the default caffeine cache at the service level.
+     *  For a larger app where this service would have multiple replicas, we should use a better solution like redis
      * @param lang This parameter allows you to specify the language of the news articles returned by the API. You have to set as value the 2 letters code of the language you want to filter.
      * @param country This parameter allows you to specify the country where the news articles returned by the API were published, the contents of the articles are not necessarily related to the specified country. You have to set as value the 2 letters code of the country you want to filter.
      * @param max This parameter allows you to specify the number of news articles returned by the API. The minimum value of this parameter is 1 and the maximum value is 100. The value you can set depends on your subscription.

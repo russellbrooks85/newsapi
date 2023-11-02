@@ -16,6 +16,13 @@ public class Utilities {
     private static final Logger logger
             = LoggerFactory.getLogger(Utilities.class);
 
+
+    /**
+     * This is the simplest possible way to view the results in a readable format.  I decided to do this instead of spending several hours writing a React GUI
+     * @param articles list of articles resulting from the search
+     * @return html string that can be viewed in a browser easily
+     * @throws NewsException displays back a message in the error case - handled by the GlobalControllerExceptionHandler
+     */
     public static String articlesAsHtml(List<Article> articles) throws NewsException {
 
         try {
@@ -58,25 +65,56 @@ public class Utilities {
         }
     }
 
+    /**
+     * validates max parameter. throws BadRequestException when validation fails
+     * @param max number of articles to return - must be a number
+     * @throws BadRequestException displays back a message in the error case - handled by the GlobalControllerExceptionHandler
+     */
     public static void validateMax(String max) throws BadRequestException {
-        if (StringUtils.isEmpty(max) || !StringUtils.isNumeric(max)) throw new BadRequestException("Invalid max parameter - must be a number");
+        if (!StringUtils.isEmpty(max) && !StringUtils.isNumeric(max)) throw new BadRequestException("Invalid max parameter - must be a number");
     }
 
+    /**
+     * validates keyword parameter. throws BadRequestException when validation fails
+     * @param keyword string to search parameter - cannot be null
+     * @throws BadRequestException displays back a message in the error case - handled by the GlobalControllerExceptionHandler
+     */
     public static void validateKeyword(String keyword) throws BadRequestException {
         if (StringUtils.isEmpty(keyword)) throw new BadRequestException("Invalid keyword parameter - cannot be null");
     }
+
+    /**
+     * validates lang parameter. throws BadRequestException when validation fails
+     * @param lang filter on language parameter - compared with array of all valid languages
+     * @throws BadRequestException displays back a message in the error case - handled by the GlobalControllerExceptionHandler
+     */
     public static void validateLang(String lang) throws BadRequestException {
         if (!StringUtils.isEmpty(lang) && !StringUtils.equalsAnyIgnoreCase(lang,LANGUAGES)) throw new BadRequestException("Invalid lang parameter - "+lang+" is not a valid language");
     }
 
+    /**
+     * validates country parameter. throws BadRequestException when validation fails
+     * @param country  compared with array of all valid countries
+     * @throws BadRequestException displays back a message in the error case - handled by the GlobalControllerExceptionHandler
+     */
     public static void validateCountry(String country) throws BadRequestException {
         if (!StringUtils.isEmpty(country) && !StringUtils.equalsAnyIgnoreCase(country,COUNTRIES)) throw new BadRequestException("Invalid country parameter - "+country+" is not a valid country");
     }
 
+    /**
+     * validates sort parameter. throws BadRequestException when validation fails
+     * @param sort compared with array of all valid sort fields
+     * @throws BadRequestException displays back a message in the error case - handled by the GlobalControllerExceptionHandler
+     */
     public static void validateSort(String sort) throws BadRequestException {
         if (!StringUtils.isEmpty(sort) && !StringUtils.equalsAnyIgnoreCase(sort,SORT)) throw new BadRequestException("Invalid sortBy parameter - "+sort+" is not a valid parameter. Use either publishedAt or relevance ");
     }
 
+    /**
+     * validates in/nullable parameters. throws BadRequestException when validation fails
+     * @param fields compared with array of all valid sort fields
+     * @throws BadRequestException displays back a message in the error case - handled by the GlobalControllerExceptionHandler
+     */
     public static void validateFields(String fields) throws BadRequestException {
         if (!StringUtils.isEmpty(fields)) {
             for (String field: fields.split(",")) {
@@ -86,6 +124,11 @@ public class Utilities {
         }
     }
 
+    /**
+     * validates to/from parameters. throws BadRequestException when validation fails
+     * @param dateTime must be a valid date in the correct format
+     * @throws BadRequestException displays back a message in the error case - handled by the GlobalControllerExceptionHandler
+     */
     public static void validateDateTime(String dateTime) throws BadRequestException {
         DateTimeFormatter dtf  = DateTimeFormatter.ISO_INSTANT;
         try {

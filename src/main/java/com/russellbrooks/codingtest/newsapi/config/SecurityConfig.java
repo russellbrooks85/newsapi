@@ -22,18 +22,6 @@ public class SecurityConfig {
     @Value("${newsapi.password}")
     String password;
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests((requests) -> requests
-//                        .requestMatchers("/", "/home").permitAll()
-//                        .anyRequest().authenticated()
-//                )
-//                .httpBasic()
-//
-//        return http.build();
-//    }
-//
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user =
@@ -45,11 +33,6 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(user);
     }
-
-//    @Bean
-//    public static PasswordEncoder passwordEncoder(){
-//        return new BCryptPasswordEncoder();
-//    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

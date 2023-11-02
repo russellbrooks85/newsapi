@@ -24,9 +24,9 @@ class GlobalControllerExceptionHandler {
     }
 
     @ExceptionHandler(NewsException.class)
-    public ResponseEntity<String> handleBadRequest(NewsException e) {
+    public ResponseEntity<String> handleNewsException(NewsException e) {
         logger.error("Error Processing Request : returning 500 error : {}", e.getError());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getError().toString());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getError().toString());
     }
 
     @ExceptionHandler(IndexOutOfBoundsException.class)
