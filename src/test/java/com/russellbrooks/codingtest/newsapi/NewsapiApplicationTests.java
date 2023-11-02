@@ -10,4 +10,5 @@ class NewsapiApplicationTests {
 	void contextLoads() {
 	}
 
+
 }
