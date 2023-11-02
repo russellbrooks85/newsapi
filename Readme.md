@@ -14,7 +14,7 @@ Swagger UI URL
 http://localhost:8080/swagger-ui/index.html
 
 ## Test cases
-These can be clicked directly to open in the browser. You will be prompted for credentials the first time. enter user/pass: unencrypted / shouldbrencrypted .  Alternatively, you may also run with a curl command like the following:
+These can be clicked directly to open in the browser. You will be prompted for credentials the first time. enter user/pass: `unencrypted / shouldbrencrypted` .  Alternatively, you may also run with a curl command like the following:
 ```bash
 curl -v -X GET "http://localhost:8080/news/title/hiring" -H "Authorization: Basic dW5lbmNyeXB0ZWQ6c2hvdWxkYnJlbmNyeXB0ZWQ="
 ```
